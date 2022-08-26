@@ -1,7 +1,6 @@
 package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,8 +8,12 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 public class ThirstListener implements Listener{
     Main plugin;
@@ -36,12 +39,16 @@ public class ThirstListener implements Listener{
     }
     @EventHandler
     public void onDrink(PlayerItemConsumeEvent e){
-        ItemStack item = e.getItem();
+        ItemStack item = e.getPlayer().getItemInUse();
         UUID id = e.getPlayer().getUniqueId();
+        PotionData data;
+        if (item != null) {
+            data = ((PotionMeta) Objects.requireNonNull(item.getItemMeta())).getBasePotionData();
 
-        if (item.equals( new ItemStack(Material.GLASS_BOTTLE, 1) )){
-            Thirst.setThirst(id, Thirst.getThirst(id) + 3);
-            e.getPlayer().sendMessage("Drink.");
+            if (data.getType().equals(PotionType.WATER)) {
+                Thirst.setThirst(id, Thirst.getThirst(id) + 3);
+                e.getPlayer().sendMessage("Drink.");
+            }
         }
         if (Thirst.getThirst(id) >= 20)  Thirst.setThirst(id,20);
     }
