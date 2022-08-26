@@ -1,12 +1,16 @@
 package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.HashMap;
 import java.util.UUID;
 public class ThirstListener implements Listener{
@@ -31,9 +35,13 @@ public class ThirstListener implements Listener{
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()) );
     }
     @EventHandler
-    public void onDrink(PlayerInteractEvent e){
-        Player player = e.getPlayer();
-        //drink the water
+    public void onDrink(PlayerItemConsumeEvent e){
+        ItemStack item = e.getItem();
+        UUID id = e.getPlayer().getUniqueId();
+        if (item == new ItemStack(Material.GLASS_BOTTLE, 1)){
+            Thirst.setThirst(id, Thirst.getThirst(id) + 3);
+        }
+        if (Thirst.getThirst(id) >= 20)  Thirst.setThirst(id,20);
     }
 
 }
