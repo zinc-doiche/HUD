@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Thirst {
-
     public static HashMap<UUID, Integer> thirst = new HashMap<>();
     public static final int DEFAULT = 20;
     public Thirst(UUID id){
