@@ -26,7 +26,7 @@ public class ThirstListener implements Listener{
         if(remainWater.containsKey(id)) Thirst.setThirst(id, remainWater.get(id));
         else Thirst.setThirst(id, Thirst.DEFAULT);
         ThirstTask task = new ThirstTask(plugin, id);
-
+        player.sendMessage("Thirst: "+Thirst.getThirst(id));
         task.runTaskTimer(plugin, 0, 200L);
     }
     @EventHandler
@@ -40,6 +40,7 @@ public class ThirstListener implements Listener{
         UUID id = e.getPlayer().getUniqueId();
         if (item == new ItemStack(Material.GLASS_BOTTLE, 1)){
             Thirst.setThirst(id, Thirst.getThirst(id) + 3);
+            e.getPlayer().sendMessage("Drink.");
         }
         if (Thirst.getThirst(id) >= 20)  Thirst.setThirst(id,20);
     }

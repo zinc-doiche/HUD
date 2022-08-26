@@ -1,6 +1,6 @@
 name: Thirst
 version: '${project.version}'
-main: com.reve.thirst.Thirst
+main: com.reve.thirst.Main
 api-version: 1.19
 authors: [ doiche ]
 description: thirst
