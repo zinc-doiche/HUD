@@ -8,7 +8,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        System.out.println("HW");
+        System.out.println("HWㅇㅇㅇㅇ");
         new ThirstListener(this);
 
     }
