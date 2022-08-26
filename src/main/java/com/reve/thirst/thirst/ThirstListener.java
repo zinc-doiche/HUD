@@ -4,6 +4,7 @@ import com.reve.thirst.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.HashMap;
@@ -29,4 +30,10 @@ public class ThirstListener implements Listener{
         Player player = e.getPlayer();
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()) );
     }
+    @EventHandler
+    public void onDrink(PlayerInteractEvent e){
+        Player player = e.getPlayer();
+        //drink the water
+    }
+
 }
