@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -20,8 +19,9 @@ public class ThirstListener implements Listener{
         this.plugin = plugin;
     }
     @EventHandler
-    public void onJoin(PlayerJoinEvent e){
+    public void onPlayerJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
+        player.sendMessage("HI!");
         UUID id = player.getUniqueId();
         if(remainWater.containsKey(id)) Thirst.setThirst(id, remainWater.get(id));
         else Thirst.setThirst(id, Thirst.DEFAULT);
@@ -30,7 +30,7 @@ public class ThirstListener implements Listener{
         task.runTaskTimer(plugin, 0, 200L);
     }
     @EventHandler
-    public void onLeave(PlayerQuitEvent e){
+    public void onPlayerLeave(PlayerQuitEvent e){
         Player player = e.getPlayer();
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()) );
     }
@@ -38,7 +38,8 @@ public class ThirstListener implements Listener{
     public void onDrink(PlayerItemConsumeEvent e){
         ItemStack item = e.getItem();
         UUID id = e.getPlayer().getUniqueId();
-        if (item == new ItemStack(Material.GLASS_BOTTLE, 1)){
+
+        if (item.equals( new ItemStack(Material.GLASS_BOTTLE, 1) )){
             Thirst.setThirst(id, Thirst.getThirst(id) + 3);
             e.getPlayer().sendMessage("Drink.");
         }
