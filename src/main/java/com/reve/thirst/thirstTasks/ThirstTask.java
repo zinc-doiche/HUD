@@ -23,7 +23,7 @@ public class ThirstTask extends BukkitRunnable {
             //player.sendMessage("Run: " + run.isRunning(id));
             //player.sendMessage("Jump: " + jump.isJumping(id));
             if (Thirst.getThirst(id) > 0) {
-                task.cancel();
+                //task.cancel();
                 if (run.isRunning(id)) {
                     //player.sendMessage("Running!!");
                     amp += 0.5f;
@@ -35,7 +35,11 @@ public class ThirstTask extends BukkitRunnable {
                 Thirst.setThirst(id, Thirst.getThirst(id) - 0.05f * amp);
             } else {
                 Thirst.setThirst(id, 0);
-                task.runTaskTimer(plugin, 100L,100L);
+                if (!task.isCooldown(id)) {
+                    task.runTaskLater(plugin, 40L);
+                    task.setIsCooldown(id, true);
+                }
+
             }
         }
     }

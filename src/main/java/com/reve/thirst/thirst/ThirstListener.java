@@ -6,10 +6,12 @@ import com.reve.thirst.thirstTasks.DisplayTask;
 import com.reve.thirst.thirstTasks.JumpTask;
 import com.reve.thirst.thirstTasks.RunTask;
 import com.reve.thirst.thirstTasks.ThirstTask;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
+import org.bukkit.event.world.WorldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
@@ -44,6 +46,10 @@ public class ThirstListener implements Listener{
         Player player = e.getPlayer();
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()));
     }
+    /*@EventHandler
+    public void onThirst(PlayerThirstEvent e){
+
+    }*/
     @EventHandler
     public void onDrink(PlayerItemConsumeEvent e){
         ItemStack item = e.getPlayer().getItemInUse();
