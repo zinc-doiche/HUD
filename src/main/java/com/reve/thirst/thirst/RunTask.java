@@ -25,7 +25,7 @@ public class RunTask extends BukkitRunnable {
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
         if (player != null) {
-            if (!isRunning(id)) {
+            if (isRunning(id)) {
                 setIsRunning(id, false);
                 player.sendMessage("You've Stopped Running.");
             } else {
