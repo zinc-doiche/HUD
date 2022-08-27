@@ -21,18 +21,18 @@ public class ThirstTask extends BukkitRunnable {
         JumpTask jump = new JumpTask(plugin, id);
         RunTask run = new RunTask(plugin, id);
         if (player != null) {
-            player.sendMessage("Run: " + run.isRunning(id));
-            player.sendMessage("Jump: " + jump.isJumping(id));
+            //player.sendMessage("Run: " + run.isRunning(id));
+            //player.sendMessage("Jump: " + jump.isJumping(id));
             if (Thirst.getThirst(id) > 0) {
                 if (run.isRunning(id)) {
                     //player.sendMessage("Running!!");
-                    amp += 1f;
+                    amp += 0.5f;
                 }
                 if (jump.isJumping(id)) {
                     //player.sendMessage("Jumping!!");
-                    amp += 1f;
+                    amp += 0.5f;
                 }
-                Thirst.setThirst(id, Thirst.getThirst(id) - 0.1f * amp);
+                Thirst.setThirst(id, Thirst.getThirst(id) - 0.05f * amp);
             } else Thirst.setThirst(id, 0);
         }
     }

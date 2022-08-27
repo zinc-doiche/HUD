@@ -23,12 +23,9 @@ public class DisplayTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-
         if (player != null){
-
-            int t = (int) Thirst.getThirst(player.getUniqueId());
+            int t = (int) Math.floor(Thirst.getThirst(player.getUniqueId()));
             String unicode = null;
-
             if (t == 0){
                 unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002";
             } else if(t==1){
