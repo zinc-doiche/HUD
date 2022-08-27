@@ -27,10 +27,10 @@ public class RunTask extends BukkitRunnable {
         if (player != null) {
             if (isRunning(id)) {
                 setIsRunning(id, false);
-                player.sendMessage("You've Stopped Running.");
+                //player.sendMessage("You've Stopped Running.");
             } else {
                 setIsRunning(id, true);
-                player.sendMessage("You're on Running.");
+                //player.sendMessage("You're on Running.");
             }
         }
     }
