@@ -43,6 +43,7 @@ public class ThirstListener implements Listener{
         ItemStack item = e.getPlayer().getItemInUse();
         UUID id = e.getPlayer().getUniqueId();
         PotionData data;
+
         if (item != null) {
             data = ((PotionMeta) Objects.requireNonNull(item.getItemMeta())).getBasePotionData();
 

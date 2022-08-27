@@ -19,6 +19,5 @@ public class OnRunTask extends BukkitRunnable {
     }
     @Override
     public void run() {
-
     }
 }

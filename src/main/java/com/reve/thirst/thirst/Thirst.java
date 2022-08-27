@@ -9,7 +9,7 @@ public class Thirst {
     public Thirst(UUID id){
         thirst.put(id, DEFAULT);
     }
-    public static Float getThirst(UUID id){
+    public static float getThirst(UUID id){
         return thirst.get(id);
     }
     public static void setThirst(UUID id, float value){
