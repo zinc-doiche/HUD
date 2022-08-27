@@ -6,12 +6,10 @@ import com.reve.thirst.thirstTasks.DisplayTask;
 import com.reve.thirst.thirstTasks.JumpTask;
 import com.reve.thirst.thirstTasks.RunTask;
 import com.reve.thirst.thirstTasks.ThirstTask;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
-import org.bukkit.event.world.WorldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
@@ -61,7 +59,11 @@ public class ThirstListener implements Listener{
 
             if (data.getType().equals(PotionType.WATER)) {
                 Thirst.setThirst(id, Thirst.getThirst(id) + 6);
-                e.getPlayer().sendMessage("Drink.");
+                //e.getPlayer().sendMessage("Drink.");
+            }
+            if (data.getType().equals(PotionType.AWKWARD)) {
+                Thirst.setThirst(id, Thirst.getThirst(id) - 20);
+                //e.getPlayer().sendMessage("Drink.");
             }
         }
         if (Thirst.getThirst(id) >= 20)  Thirst.setThirst(id,20);
