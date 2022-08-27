@@ -6,8 +6,6 @@ import com.reve.thirst.thirstTasks.DisplayTask;
 import com.reve.thirst.thirstTasks.JumpTask;
 import com.reve.thirst.thirstTasks.RunTask;
 import com.reve.thirst.thirstTasks.ThirstTask;
-import org.bukkit.Bukkit;
-import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -74,11 +72,5 @@ public class ThirstListener implements Listener{
         task.runTaskLater(plugin, 5L);
     }
 
-    @EventHandler
-    public void onPlayerStatisticIncrement(PlayerStatisticIncrementEvent event) {
-        if (event.getStatistic().equals(Statistic.JUMP)) {
-            //calls PlayerJumpEvent
-            Bukkit.getServer().getPluginManager().callEvent(new PlayerJumpEvent(event.getPlayer(), event));
-        }
-    }
+
 }

@@ -24,8 +24,8 @@ public class DisplayTask extends BukkitRunnable {
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
         if (player != null){
-            int t = (int) Math.floor(Thirst.getThirst(player.getUniqueId()));
-            String unicode = null;
+            int t = (int) Math.ceil(Thirst.getThirst(player.getUniqueId()));
+            String unicode = "";
             if (t == 0){
                 unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002";
             } else if(t==1){
@@ -69,7 +69,7 @@ public class DisplayTask extends BukkitRunnable {
             } else if (t>=20) {
                 unicode = "\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
             }
-            String display="\uF82B\uF82A\uF825"+unicode;
+            String display = tab+unicode;
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(display));
         }
     }

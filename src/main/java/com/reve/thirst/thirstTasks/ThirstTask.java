@@ -2,8 +2,6 @@ package com.reve.thirst.thirstTasks;
 
 import com.reve.thirst.Main;
 import com.reve.thirst.thirst.Thirst;
-import com.reve.thirst.thirstTasks.JumpTask;
-import com.reve.thirst.thirstTasks.RunTask;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
@@ -16,6 +14,7 @@ public class ThirstTask extends BukkitRunnable {
     }
     @Override
     public void run() {
+        ThirstDamageTask task = new ThirstDamageTask(plugin, id);
         Player player = plugin.getServer().getPlayer(id);
         float amp = 1f;
         JumpTask jump = new JumpTask(plugin, id);
@@ -24,6 +23,7 @@ public class ThirstTask extends BukkitRunnable {
             //player.sendMessage("Run: " + run.isRunning(id));
             //player.sendMessage("Jump: " + jump.isJumping(id));
             if (Thirst.getThirst(id) > 0) {
+                task.cancel();
                 if (run.isRunning(id)) {
                     //player.sendMessage("Running!!");
                     amp += 0.5f;
@@ -33,7 +33,11 @@ public class ThirstTask extends BukkitRunnable {
                     amp += 0.5f;
                 }
                 Thirst.setThirst(id, Thirst.getThirst(id) - 0.05f * amp);
-            } else Thirst.setThirst(id, 0);
+            } else {
+                Thirst.setThirst(id, 0);
+                task.runTaskTimer(plugin, 100L,100L);
+            }
         }
     }
+
 }
