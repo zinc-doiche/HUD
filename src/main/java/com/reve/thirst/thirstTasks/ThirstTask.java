@@ -36,8 +36,8 @@ public class ThirstTask extends BukkitRunnable {
             } else {
                 Thirst.setThirst(id, 0);
                 if (!task.isCooldown(id)) {
-                    task.runTaskLater(plugin, 40L);
                     task.setIsCooldown(id, true);
+                    task.runTaskLater(plugin, 40L);
                 }
 
             }

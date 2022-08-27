@@ -22,7 +22,8 @@ public class ThirstDamageTask extends BukkitRunnable {
     }
 
     public boolean isCooldown(UUID id){
-        return isCooldown.get(id);
+        if (isCooldown.get(id) != null) return isCooldown.get(id);
+        else return false;
     }
     @Override
     public void run() {
