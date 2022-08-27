@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class ThirstDamageTask extends BukkitRunnable {
     Main plugin; UUID id;
-    HashMap<UUID, Boolean> isCooldown = new HashMap<>();
+    static HashMap<UUID, Boolean> isCooldown = new HashMap<>();
     public ThirstDamageTask(Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
