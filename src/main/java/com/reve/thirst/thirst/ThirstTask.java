@@ -12,7 +12,8 @@ public class ThirstTask extends BukkitRunnable {
     }
     @Override
     public void run() {
-        if (Thirst.getThirst(id) > 0 ) Thirst.setThirst(id, Thirst.getThirst(id) - 1);
+        float run = ThirstListener.run; float jump = ThirstListener.jump;
+        if (Thirst.getThirst(id) > 0) Thirst.setThirst(id, (long) (Thirst.getThirst(id) - 0.5f*(1f+run+jump)) );
         else Thirst.setThirst(id, 0);
         System.out.println(Thirst.getThirst(id));
     }
