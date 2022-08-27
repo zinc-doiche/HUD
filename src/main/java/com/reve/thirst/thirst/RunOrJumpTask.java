@@ -1,14 +1,15 @@
 package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class RunOrJumpTask extends BukkitRunnable {
     Main plugin; UUID id;
-    public HashMap<UUID, Boolean> isrunning = new HashMap<>();
-    public HashMap<UUID, Boolean> isjumping = new HashMap<>();
+    public static HashMap<UUID, Boolean> isrunning = new HashMap<>();
+    public static HashMap<UUID, Boolean> isjumping = new HashMap<>();
     public RunOrJumpTask(Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
@@ -29,7 +30,16 @@ public class RunOrJumpTask extends BukkitRunnable {
     }
     @Override
     public void run() {
-        if(isJumping(id)) setIsJumping(id, false);
-        if(isRunning(id)) setIsRunning(id, false);
+        Player player = plugin.getServer().getPlayer(id);
+        if (player != null) {
+            if (!isRunning(id)) {
+                setIsRunning(id, false);
+                player.sendMessage("You've Stopped Running.");
+            } else {
+                setIsRunning(id, true);
+                player.sendMessage("You're on Running.");
+            }
+            if (isJumping(id)) setIsJumping(id, false);
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
 import com.reve.thirst.events.PlayerJumpEvent;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -56,15 +58,14 @@ public class ThirstListener implements Listener{
     }
     @EventHandler
     public void onRun(PlayerToggleSprintEvent e){
-        e.getPlayer().sendMessage("Run");
         RunOrJumpTask task = new RunOrJumpTask(plugin, e.getPlayer().getUniqueId());
-        task.setIsRunning(e.getPlayer().getUniqueId(), true);
-        task.runTaskLater(plugin, 5L);
+        if (e.getPlayer() != null) e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                new TextComponent("HIHIHI"));
+        task.run();
         //e.getPlayer().sendMessage("You're on Running.");
     }
     @EventHandler
     public void onJump(PlayerJumpEvent e){
-        e.getPlayer().sendMessage("Jump");
         RunOrJumpTask task = new RunOrJumpTask(plugin, e.getPlayer().getUniqueId());
         task.setIsJumping(e.getPlayer().getUniqueId(), true);
         task.runTaskLater(plugin, 5L);

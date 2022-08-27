@@ -11,7 +11,8 @@ public final class Main extends JavaPlugin {
         System.out.println("HW");
         ThirstListener listener = new ThirstListener(this);
         getServer().getPluginManager().registerEvents(listener, this);
-
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
         getCommand("getmythirst").setExecutor(new GetThirstCommand());
     }
 }
