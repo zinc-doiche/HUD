@@ -39,6 +39,10 @@ public class PlayerJumpEvent extends PlayerEvent implements Cancellable {
     public HandlerList getHandlers() {
         return handlers;
     }
+    public static HandlerList getHandlerList() {
+        return handlers;
+        //required!!
+    }
     public static class PlayerJumpEventListener implements Listener {
         Main plugin;
         public PlayerJumpEventListener(Main plugin){
