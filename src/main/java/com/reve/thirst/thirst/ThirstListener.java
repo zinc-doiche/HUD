@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.UUID;
 public class ThirstListener implements Listener{
     public static float run = 0; public static float jump = 0;
+    HashMap<UUID, Float> onRun = new HashMap<>();
     Main plugin;
     private final HashMap<UUID, Float> remainWater = new HashMap<>();
     public ThirstListener(Main plugin){
@@ -57,11 +58,12 @@ public class ThirstListener implements Listener{
     @EventHandler
     public void onRun(PlayerToggleSprintEvent e){
         run = 0.3f;
-
+        e.getPlayer().sendMessage("You're on Running.");
     }
     @EventHandler
     public void onJump(PlayerJumpEvent e){
-        jump = 0.3f
+        jump = 0.3f;
+        e.getPlayer().sendMessage("You're on Jumping.");
     }
 
     @EventHandler
