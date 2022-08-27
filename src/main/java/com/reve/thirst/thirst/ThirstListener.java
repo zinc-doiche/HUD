@@ -2,6 +2,10 @@ package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
 import com.reve.thirst.events.PlayerJumpEvent;
+import com.reve.thirst.thirstTasks.DisplayTask;
+import com.reve.thirst.thirstTasks.JumpTask;
+import com.reve.thirst.thirstTasks.RunTask;
+import com.reve.thirst.thirstTasks.ThirstTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -29,9 +33,13 @@ public class ThirstListener implements Listener{
         UUID id = player.getUniqueId();
         if(remainWater.containsKey(id)) Thirst.setThirst(id, remainWater.get(id));
         else Thirst.setThirst(id, Thirst.DEFAULT);
+
         ThirstTask task = new ThirstTask(plugin, id);
         player.sendMessage("Thirst: "+Thirst.getThirst(id));
         task.runTaskTimer(plugin, 5L, 5L);
+
+        DisplayTask task1 = new DisplayTask(plugin, id);
+        task1.runTaskTimer(plugin, 0L, 1L);
     }
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){

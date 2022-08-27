@@ -1,6 +1,9 @@
-package com.reve.thirst.thirst;
+package com.reve.thirst.thirstTasks;
 
 import com.reve.thirst.Main;
+import com.reve.thirst.thirst.Thirst;
+import com.reve.thirst.thirstTasks.JumpTask;
+import com.reve.thirst.thirstTasks.RunTask;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;

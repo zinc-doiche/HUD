@@ -1,4 +1,4 @@
-package com.reve.thirst.thirst;
+package com.reve.thirst.thirstTasks;
 
 import com.reve.thirst.Main;
 import org.bukkit.entity.Player;
