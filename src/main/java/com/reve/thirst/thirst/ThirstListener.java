@@ -31,12 +31,12 @@ public class ThirstListener implements Listener{
         else Thirst.setThirst(id, Thirst.DEFAULT);
         ThirstTask task = new ThirstTask(plugin, id);
         player.sendMessage("Thirst: "+Thirst.getThirst(id));
-        task.runTaskTimer(plugin, 100L, 100L);
+        task.runTaskTimer(plugin, 20L, 20L);
     }
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){
         Player player = e.getPlayer();
-        remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()) );
+        remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()));
     }
     @EventHandler
     public void onDrink(PlayerItemConsumeEvent e){
@@ -56,12 +56,16 @@ public class ThirstListener implements Listener{
     }
     @EventHandler
     public void onRun(PlayerToggleSprintEvent e){
-        OnRunTask task = new OnRunTask(plugin, e.getPlayer().getUniqueId());
+        RunOrJumpTask task = new RunOrJumpTask(plugin, e.getPlayer().getUniqueId());
+        task.setIsRunning(e.getPlayer().getUniqueId(), true);
+        task.run();
         //e.getPlayer().sendMessage("You're on Running.");
     }
     @EventHandler
     public void onJump(PlayerJumpEvent e){
-        OnJumpTask task = new OnJumpTask(plugin, e.getPlayer().getUniqueId());
+        RunOrJumpTask task = new RunOrJumpTask(plugin, e.getPlayer().getUniqueId());
+        task.setIsJumping(e.getPlayer().getUniqueId(), true);
+        task.runTaskLater(plugin, 10L);
         //e.getPlayer().sendMessage("You're on Jumping.");
     }
 

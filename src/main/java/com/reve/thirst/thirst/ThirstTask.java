@@ -15,13 +15,14 @@ public class ThirstTask extends BukkitRunnable {
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
         float amp = 1f;
+        RunOrJumpTask runOrJump = new RunOrJumpTask(plugin, id);
         if (Thirst.getThirst(id) > 0) {
-            if(OnRunTask.isRunning(id)) amp += 0.3f;
-            if(OnJumpTask.isJumping(id)) amp += 0.3f;
-            Thirst.setThirst(id,Thirst.getThirst(id) - 0.5f*amp);
+            if(runOrJump.isRunning(id)) amp += 0.3f;
+            if(runOrJump.isJumping(id)) amp += 0.3f;
+            Thirst.setThirst(id,Thirst.getThirst(id) - 0.1f*amp);
         }
         else Thirst.setThirst(id, 0);
 
-        player.sendMessage("Thirst: "+Thirst.getThirst(id));
+        if(player != null) player.sendMessage("Thirst: "+Thirst.getThirst(id));
     }
 }
