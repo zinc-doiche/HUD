@@ -16,4 +16,5 @@ public class Thirst {
         if (thirst.containsKey(id)) thirst.replace(id, value);
         else thirst.put(id, DEFAULT);
     }
+
 }
