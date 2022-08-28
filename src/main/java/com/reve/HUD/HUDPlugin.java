@@ -8,11 +8,8 @@ public final class HUDPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("HW");
-        HUDListener listener = new HUDListener(this);
-        PlayerJumpEventListener jumpListener = new PlayerJumpEventListener(this);
-
-        getServer().getPluginManager().registerEvents(listener, this);
-        getServer().getPluginManager().registerEvents(jumpListener, this);
+        getServer().getPluginManager().registerEvents(new HUDListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJumpEventListener(this), this);
 
         getConfig().options().copyDefaults();
         saveDefaultConfig();

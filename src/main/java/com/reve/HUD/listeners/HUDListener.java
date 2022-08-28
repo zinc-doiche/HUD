@@ -7,6 +7,7 @@ import com.reve.HUD.tasks.DisplayTask;
 import com.reve.HUD.events.PlayerJumpEvent;
 import com.reve.HUD.tasks.JumpTask;
 import com.reve.HUD.tasks.RunTask;
+import com.reve.HUD.tasks.temperatureTasks.TemperatureTask;
 import com.reve.HUD.tasks.thirstTasks.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,11 +34,9 @@ public class HUDListener implements Listener{
 
         new ThirstConfig(plugin, player).setThirstConfig();
         //player.sendMessage("Thirst: "+Thirst.getThirst(id));
-        ThirstTask task = new ThirstTask(plugin, id);
-        task.runTaskTimer(plugin, 5L, 5L);
-
-        DisplayTask task1 = new DisplayTask(plugin, id);
-        task1.runTaskTimer(plugin, 0L, 1L);
+        new ThirstTask(plugin, id).runTaskTimer(plugin, 5L, 5L);
+        new TemperatureTask(plugin, id).runTaskTimer(plugin, 10L, 10L);
+        new DisplayTask(plugin, id).runTaskTimer(plugin, 0L, 1L);
     }
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){

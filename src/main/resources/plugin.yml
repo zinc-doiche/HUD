@@ -1,6 +1,6 @@
 name: Thirst
 version: '${project.version}'
-main: com.reve.thirst.Main
+main: com.reve.thirst.HUDPlugin
 api-version: 1.19
 authors: [ doiche, crazywindow7 ]
-description: thirst system
+description: HUD system
