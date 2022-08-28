@@ -7,3 +7,5 @@ description: thirst
 commands:
   getmythirst:
     description: show your thirst level.
+  savethirst:
+    description: save thirst at the config.
