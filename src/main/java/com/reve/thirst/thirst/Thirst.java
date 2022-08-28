@@ -23,22 +23,27 @@ public class Thirst {
     }
     public static void saveThirst(Main plugin, HashMap<UUID, Float> thirst) {
         Iterator<Map.Entry<UUID, Float>> i = thirst.entrySet().iterator();
-        Map<String, Float> map = new HashMap<>();
+        List<String> lines = new ArrayList<>(thirst.entrySet().size());
         while(i.hasNext()){
             Map.Entry<UUID, Float> entry = i.next();
-            String name = plugin.getServer().getPlayer(entry.getKey()).getName();
-            map.put(name, entry.getValue());
+            Player player = plugin.getServer().getPlayer(entry.getKey());
+            if (player != null) {
+                String line = player.getName() + "," + entry.getValue();
+                lines.add(line);
+            }
         }
-        plugin.getConfig().set("thirst", map);
+        plugin.getConfig().setInlineComments("thirst", lines);
+        //plugin.getServer().broadcastMessage(map.toString());
         plugin.saveConfig();
     }
-    public static void loadThirst(Main plugin, UUID id) {
-
-        for (String currentLine : plugin.getConfig().getStringList("thirst")) {
-            String[] mapList = currentLine.split(",");
-
-            Player player = plugin.getServer().getPlayer(mapList[0]);
-            if (player != null && player.getUniqueId().equals(id)) Thirst.setThirst(id, Float.parseFloat(mapList[1]));
+    public static void loadThirst(Main plugin, String name) {
+        if (plugin.getServer().getPlayer(name) != null){
+            List<String> lines = plugin.getConfig().getStringList("thirst");
+            for(String line : lines){
+                String[] mapList = line.split(",");
+                Player player = plugin.getServer().getPlayer(name);
+                if (name.equals(mapList[0])) Thirst.setThirst(player.getUniqueId(), Float.parseFloat(mapList[1]));
+            }
         }
     }
 }

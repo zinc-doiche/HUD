@@ -27,7 +27,7 @@ public class ThirstListener implements Listener{
         Player player = e.getPlayer();
         player.sendMessage("HI!");
         UUID id = player.getUniqueId();
-        Thirst.loadThirst(plugin, id);
+        Thirst.loadThirst(plugin, player.getName());
 
         if(remainWater.containsKey(id)) Thirst.setThirst(id, remainWater.get(id));
         else Thirst.setThirst(id, Thirst.DEFAULT);
