@@ -1,5 +1,6 @@
 package com.reve.thirst.thirst;
 
+import com.reve.thirst.DisplayTask;
 import com.reve.thirst.Main;
 import com.reve.thirst.events.PlayerJumpEvent;
 import com.reve.thirst.thirstTasks.*;
@@ -34,7 +35,7 @@ public class ThirstListener implements Listener{
             // 서버 일반 유저
         } else if(plugin.getConfig().get("thirst."+player.getUniqueId()) != null){
 
-            Thirst.setThirst(player.getUniqueId(), (float) plugin.getConfig().get("thirst."+player.getUniqueId()));
+            Thirst.setThirst(player.getUniqueId(), (float) plugin.getConfig().getDouble("thirst."+player.getUniqueId()));
             // 서버 이용 경혐 있던 유저
         } else{
             Thirst.setThirst(id, Thirst.DEFAULT);
@@ -53,7 +54,7 @@ public class ThirstListener implements Listener{
         Player player = e.getPlayer();
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()));
 
-        plugin.getConfig().createSection("thirstList",remainWater);
+        plugin.getConfig().createSection("thirst",remainWater);
         plugin.saveConfig();
     }
     @EventHandler

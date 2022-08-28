@@ -1,4 +1,4 @@
-package com.reve.thirst.thirstTasks;
+package com.reve.thirst;
 
 import com.reve.thirst.Main;
 import com.reve.thirst.thirst.Thirst;
@@ -12,14 +12,10 @@ import java.util.UUID;
 public class DisplayTask extends BukkitRunnable {
 
     Main plugin; UUID id;
-
-    String tab = "\uF82B\uF82A\uF825";
-
     public DisplayTask (Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
     }
-
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
@@ -116,6 +112,8 @@ public class DisplayTask extends BukkitRunnable {
                     unicode = "\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
                 }
             }
+            String tab = "\uF82B\uF82A\uF825";
+
             String display = tab+unicode;
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(display));
         }
