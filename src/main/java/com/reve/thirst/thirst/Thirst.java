@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Thirst {
-    public static HashMap<UUID, Float> thirst = new HashMap<>();
+    private static final HashMap<UUID, Float> thirst = new HashMap<>();
     public static final float DEFAULT = 20L;
     public Thirst(UUID id){
         if (!thirst.containsKey(id)) setThirst(id, DEFAULT);

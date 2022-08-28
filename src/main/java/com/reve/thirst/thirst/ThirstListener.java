@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.UUID;
 public class ThirstListener implements Listener{
     Main plugin;
-    private final HashMap<UUID, Float> remainWater = new HashMap<>();
+    private static final HashMap<UUID, Float> remainWater = new HashMap<>();
     public ThirstListener(Main plugin){
         this.plugin = plugin;
     }

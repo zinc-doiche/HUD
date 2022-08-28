@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class RunTask extends BukkitRunnable {
     Main plugin; UUID id;
-    public static HashMap<UUID, Boolean> isrunning = new HashMap<>();
+    private static final HashMap<UUID, Boolean> isrunning = new HashMap<>();
     public RunTask(Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;

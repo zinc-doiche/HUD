@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class JumpTask extends BukkitRunnable {
     Main plugin; UUID id;
-    public static HashMap<UUID, Boolean> isjumping = new HashMap<>();
+    private static final HashMap<UUID, Boolean> isjumping = new HashMap<>();
     public JumpTask(Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
