@@ -1,7 +1,7 @@
-package com.reve.thirst.thirstTasks;
+package com.reve.HUD.tasks;
 
-import com.reve.thirst.Main;
-import com.reve.thirst.thirst.Thirst;
+import com.reve.HUD.Main;
+import com.reve.HUD.huds.thirst.Thirst;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;

@@ -1,6 +1,4 @@
-package com.reve.thirst.thirst;
-
-import com.reve.thirst.Main;
+package com.reve.HUD.huds.thirst;
 
 import java.util.*;
 

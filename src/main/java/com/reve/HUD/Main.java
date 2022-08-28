@@ -1,8 +1,7 @@
-package com.reve.thirst;
+package com.reve.HUD;
 
-import com.reve.thirst.events.PlayerJumpEvent.*;
-import com.reve.thirst.thirst.Thirst;
-import com.reve.thirst.thirst.ThirstListener;
+import com.reve.HUD.events.PlayerJumpEvent.*;
+import com.reve.HUD.huds.thirst.ThirstListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {

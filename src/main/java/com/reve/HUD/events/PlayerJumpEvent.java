@@ -1,6 +1,6 @@
-package com.reve.thirst.events;
+package com.reve.HUD.events;
 
-import com.reve.thirst.Main;
+import com.reve.HUD.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;

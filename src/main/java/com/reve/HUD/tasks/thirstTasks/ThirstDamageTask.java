@@ -1,7 +1,6 @@
-package com.reve.thirst.thirstTasks;
+package com.reve.HUD.tasks.thirstTasks;
 
-import com.reve.thirst.Main;
-import com.reve.thirst.thirst.Thirst;
+import com.reve.HUD.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;

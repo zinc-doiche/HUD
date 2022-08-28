@@ -1,7 +1,9 @@
-package com.reve.thirst.thirstTasks;
+package com.reve.HUD.tasks.thirstTasks;
 
-import com.reve.thirst.Main;
-import com.reve.thirst.thirst.Thirst;
+import com.reve.HUD.Main;
+import com.reve.HUD.huds.thirst.Thirst;
+import com.reve.HUD.tasks.JumpTask;
+import com.reve.HUD.tasks.RunTask;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
@@ -34,7 +36,7 @@ public class ThirstTask extends BukkitRunnable {
                     //player.sendMessage("Jumping!!");
                     amp += 0.5f;
                 }
-                Thirst.setThirst(id, Thirst.getThirst(id) - 0.05f * amp);
+                Thirst.setThirst(id, Thirst.getThirst(id) - 0.025f * amp);
                 //Bukkit.getServer().getPluginManager().callEvent(new PlayerWateredEvent(player));
             } else {
                 Thirst.setThirst(id, 0);

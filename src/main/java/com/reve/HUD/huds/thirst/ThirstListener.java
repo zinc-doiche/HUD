@@ -1,8 +1,11 @@
-package com.reve.thirst.thirst;
+package com.reve.HUD.huds.thirst;
 
-import com.reve.thirst.Main;
-import com.reve.thirst.events.PlayerJumpEvent;
-import com.reve.thirst.thirstTasks.*;
+import com.reve.HUD.Main;
+import com.reve.HUD.events.PlayerJumpEvent;
+import com.reve.HUD.tasks.DisplayTask;
+import com.reve.HUD.tasks.JumpTask;
+import com.reve.HUD.tasks.RunTask;
+import com.reve.HUD.tasks.thirstTasks.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
