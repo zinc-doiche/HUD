@@ -32,13 +32,13 @@ public class Thirst {
         plugin.getConfig().set("thirst", map);
         plugin.saveConfig();
     }
-    public static void loadThirst(Main plugin) {
-        Iterator<String> line= plugin.getConfig().getStringList("thirst").iterator();
-        while(line.hasNext()){
-            String name = line.next();
-            Player player = plugin.getServer().getPlayer(name);
-            UUID id = player.getUniqueId();
-            Thirst.setThirst(id, 0f);
+    public static void loadThirst(Main plugin, UUID id) {
+
+        for (String currentLine : plugin.getConfig().getStringList("thirst")) {
+            String[] mapList = currentLine.split(",");
+
+            Player player = plugin.getServer().getPlayer(mapList[0]);
+            if (player != null && player.getUniqueId().equals(id)) Thirst.setThirst(id, Float.parseFloat(mapList[1]));
         }
     }
 }
