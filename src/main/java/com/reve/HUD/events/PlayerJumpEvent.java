@@ -1,6 +1,6 @@
 package com.reve.HUD.events;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -44,8 +44,8 @@ public class PlayerJumpEvent extends PlayerEvent implements Cancellable {
         //required!!
     }
     public static class PlayerJumpEventListener implements Listener {
-        Main plugin;
-        public PlayerJumpEventListener(Main plugin){
+        HUDPlugin plugin;
+        public PlayerJumpEventListener(HUDPlugin plugin){
             this.plugin = plugin;
         }
         @EventHandler

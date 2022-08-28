@@ -1,21 +1,21 @@
 package com.reve.HUD.huds.thirst;
 
-import java.util.*;
+import com.reve.HUD.huds.HUD;
 
-public class Thirst {
-    private static HashMap<UUID, Float> thirst = new HashMap<>();
-    public static final float DEFAULT = 20L;
+import java.util.*;
+public class Thirst extends HUD {
+    private static final HashMap<UUID, Double> thirst = new HashMap<>();
     public Thirst(UUID id){
-        if (!thirst.containsKey(id)) setThirst(id, DEFAULT);
+        if (!thirst.containsKey(id)) setThirst(id, MAX);
     }
-    public static HashMap<UUID, Float> getThirst(){
+    public static HashMap<UUID, Double> getThirst(){
         return thirst;
     }
-    public static float getThirst(UUID id){
-        if (!thirst.containsKey(id)) return DEFAULT;
+    public static double getThirst(UUID id){
+        if (!thirst.containsKey(id)) return MAX;
         else return thirst.get(id);
     }
-    public static void setThirst(UUID id, float value){
+    public static void setThirst(UUID id, double value){
         thirst.put(id, value);
     }
 }

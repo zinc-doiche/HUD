@@ -1,17 +1,18 @@
-package com.reve.HUD.tasks.thirstTasks;
+package com.reve.HUD.tasks;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.UUID;
-public class ThirstDamageTask extends BukkitRunnable {
-    Main plugin; UUID id; ThirstDamageTask task;
+public class DamageTask extends BukkitRunnable {
+    HUDPlugin plugin; UUID id; double damage;
 
     private static final HashMap<UUID, Boolean> isRunning = new HashMap<>();
-    public ThirstDamageTask(Main plugin, UUID id){
+    public DamageTask(HUDPlugin plugin, UUID id, double damage){
         this.plugin = plugin;
         this.id = id;
+        this.damage = damage;
         if(!isRunning.containsKey(id)) setIsRunning(id, false);
     }
     public boolean isRunning(UUID id){
@@ -24,7 +25,7 @@ public class ThirstDamageTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-        if(player != null && isRunning(id)) player.damage(2d);
+        if(player != null && isRunning(id)) player.damage(damage);
         setIsRunning(id, false);
     }
 }

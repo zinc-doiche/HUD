@@ -1,6 +1,6 @@
 package com.reve.HUD.tasks;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
 import com.reve.HUD.huds.thirst.Thirst;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -10,9 +10,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class DisplayTask extends BukkitRunnable {
-    //
-    Main plugin; UUID id;
-    public DisplayTask (Main plugin, UUID id){
+    HUDPlugin plugin; UUID id;
+    public DisplayTask (HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
     }

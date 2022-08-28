@@ -1,6 +1,8 @@
-package com.reve.HUD.huds.thirst;
+package com.reve.HUD.listeners;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
+import com.reve.HUD.configs.ThirstConfig;
+import com.reve.HUD.huds.thirst.Thirst;
 import com.reve.HUD.tasks.DisplayTask;
 import com.reve.HUD.events.PlayerJumpEvent;
 import com.reve.HUD.tasks.JumpTask;
@@ -16,13 +18,11 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
-public class ThirstListener implements Listener{
-    Main plugin;
-    public static final HashMap<UUID, Float> remainWater = new HashMap<>();
-    public ThirstListener(Main plugin){
+public class HUDListener implements Listener{
+    HUDPlugin plugin;
+    public HUDListener(HUDPlugin plugin){
         this.plugin = plugin;
     }
     @EventHandler
@@ -31,21 +31,9 @@ public class ThirstListener implements Listener{
         player.sendMessage("HI!");
         UUID id = player.getUniqueId();
 
-        if(remainWater.containsKey(id)) {
-
-            Thirst.setThirst(id, remainWater.get(id));
-            // 서버 일반 유저
-        } else if(plugin.getConfig().get("thirst."+player.getUniqueId()) != null){
-
-            Thirst.setThirst(player.getUniqueId(), (float) plugin.getConfig().get("thirst."+player.getUniqueId()));
-            // 서버 이용 경혐 있던 유저
-        } else{
-            Thirst.setThirst(id, Thirst.DEFAULT);
-            // 완전 신규 유저
-        }
-
+        new ThirstConfig(plugin, player).setThirstConfig();
+        //player.sendMessage("Thirst: "+Thirst.getThirst(id));
         ThirstTask task = new ThirstTask(plugin, id);
-        player.sendMessage("Thirst: "+Thirst.getThirst(id));
         task.runTaskTimer(plugin, 5L, 5L);
 
         DisplayTask task1 = new DisplayTask(plugin, id);
@@ -54,10 +42,7 @@ public class ThirstListener implements Listener{
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){
         Player player = e.getPlayer();
-        remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()));
-
-        plugin.getConfig().createSection("thirstList",remainWater);
-        plugin.saveConfig();
+        new ThirstConfig(plugin, player).saveThirstConfig();
     }
     @EventHandler
     public void onDrink(PlayerItemConsumeEvent e){
@@ -69,15 +54,15 @@ public class ThirstListener implements Listener{
             data = ((PotionMeta) Objects.requireNonNull(item.getItemMeta())).getBasePotionData();
 
             if (data.getType().equals(PotionType.WATER)) {
-                Thirst.setThirst(id, Thirst.getThirst(id) + 6);
+                Thirst.setThirst(id, Thirst.getThirst(id) + 6d);
                 //e.getPlayer().sendMessage("Drink.");
             }
             if (data.getType().equals(PotionType.AWKWARD)) {
-                Thirst.setThirst(id, Thirst.getThirst(id) - 20);
+                Thirst.setThirst(id, Thirst.getThirst(id) - 20d);
                 //e.getPlayer().sendMessage("Drink.");
             }
         }
-        if (Thirst.getThirst(id) >= 20)  Thirst.setThirst(id,20);
+        if (Thirst.getThirst(id) >= 20d)  Thirst.setThirst(id,20d);
     }
     @EventHandler
     public void onRun(PlayerToggleSprintEvent e){
@@ -94,7 +79,7 @@ public class ThirstListener implements Listener{
     public void onDeath(PlayerDeathEvent e){
         if (e.getEntity().getPlayer() != null) {
             UUID id = e.getEntity().getPlayer().getUniqueId();
-            Thirst.setThirst(id, Thirst.DEFAULT);
+            Thirst.setThirst(id, Thirst.MAX);
         }
     }
 }

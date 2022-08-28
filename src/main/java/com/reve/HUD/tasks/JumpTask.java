@@ -1,15 +1,15 @@
 package com.reve.HUD.tasks;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class JumpTask extends BukkitRunnable {
-    Main plugin; UUID id;
+    HUDPlugin plugin; UUID id;
     private static final HashMap<UUID, Boolean> isjumping = new HashMap<>();
-    public JumpTask(Main plugin, UUID id){
+    public JumpTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
         if (!isjumping.containsKey(id)) setIsJumping(id, false);

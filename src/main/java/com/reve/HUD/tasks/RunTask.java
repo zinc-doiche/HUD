@@ -1,6 +1,6 @@
 package com.reve.HUD.tasks;
 
-import com.reve.HUD.Main;
+import com.reve.HUD.HUDPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class RunTask extends BukkitRunnable {
-    Main plugin; UUID id;
+    HUDPlugin plugin; UUID id;
     private static final HashMap<UUID, Boolean> isrunning = new HashMap<>();
-    public RunTask(Main plugin, UUID id){
+    public RunTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
         if (!isrunning.containsKey(id)) setIsRunning(id, false);
