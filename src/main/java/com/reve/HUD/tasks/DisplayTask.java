@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class DisplayTask extends BukkitRunnable {
-
+    //
     Main plugin; UUID id;
     public DisplayTask (Main plugin, UUID id){
         this.plugin = plugin;
