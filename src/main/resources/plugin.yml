@@ -3,4 +3,4 @@ version: '${project.version}'
 main: com.reve.thirst.Main
 api-version: 1.19
 authors: [ doiche, crazywindow7 ]
-description: thirst
+description: thirst system
