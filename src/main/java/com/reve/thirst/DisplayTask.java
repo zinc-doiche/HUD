@@ -112,9 +112,16 @@ public class DisplayTask extends BukkitRunnable {
                     unicode = "\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
                 }
             }
-            String tab = "\uF82B\uF82A\uF825";
+            String tab1 = "\uF801";
+            // -3
 
-            String display = tab+unicode;
+            String tab2 = "\uF80B"+"\uF809"+"\uF803";
+            // -66-18-5
+
+            String bar = "\uEA10";
+            // bar 알고리즘 작성 필요
+
+            String display = tab1 + bar + tab2 + unicode;
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(display));
         }
     }
