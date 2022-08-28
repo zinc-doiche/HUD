@@ -4,8 +4,3 @@ main: com.reve.thirst.Main
 api-version: 1.19
 authors: [ doiche, crazywindow7 ]
 description: thirst
-commands:
-  getmythirst:
-    description: show your thirst level.
-  savethirst:
-    description: save thirst at the config.
