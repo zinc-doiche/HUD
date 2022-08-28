@@ -2,13 +2,11 @@ package com.reve.thirst.thirst;
 
 import com.reve.thirst.Main;
 import com.reve.thirst.events.PlayerJumpEvent;
-import com.reve.thirst.thirstTasks.DisplayTask;
-import com.reve.thirst.thirstTasks.JumpTask;
-import com.reve.thirst.thirstTasks.RunTask;
-import com.reve.thirst.thirstTasks.ThirstTask;
+import com.reve.thirst.thirstTasks.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -44,10 +42,6 @@ public class ThirstListener implements Listener{
         Player player = e.getPlayer();
         remainWater.put(player.getUniqueId(), Thirst.getThirst(player.getUniqueId()));
     }
-    /*@EventHandler
-    public void onThirst(PlayerThirstEvent e){
-
-    }*/
     @EventHandler
     public void onDrink(PlayerItemConsumeEvent e){
         ItemStack item = e.getPlayer().getItemInUse();
@@ -79,6 +73,11 @@ public class ThirstListener implements Listener{
         task.setIsJumping(e.getPlayer().getUniqueId(), true);
         task.runTaskLater(plugin, 5L);
     }
-
-
+    @EventHandler
+    public void onDeath(PlayerDeathEvent e){
+        if (e.getEntity().getPlayer() != null) {
+            UUID id = e.getEntity().getPlayer().getUniqueId();
+            Thirst.setThirst(id, Thirst.DEFAULT);
+        }
+    }
 }

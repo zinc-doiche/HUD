@@ -34,14 +34,13 @@ public class ThirstTask extends BukkitRunnable {
                     amp += 0.5f;
                 }
                 Thirst.setThirst(id, Thirst.getThirst(id) - 0.05f * amp);
+                //Bukkit.getServer().getPluginManager().callEvent(new PlayerWateredEvent(player));
             } else {
                 Thirst.setThirst(id, 0);
-                if (!task.isCooldown(id)) {
-                    task.setIsCooldown(id, true);
-                    task.runTaskLater(plugin, 40L);
-                }
-
+                if(!task.isRunning(id)) task.runTaskLater(plugin, 60L);
+                //Bukkit.getServer().getPluginManager().callEvent(new PlayerThirstEvent(player));
             }
+
         }
     }
 

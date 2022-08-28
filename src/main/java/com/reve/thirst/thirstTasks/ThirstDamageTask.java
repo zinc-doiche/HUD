@@ -7,24 +7,29 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.UUID;
 public class ThirstDamageTask extends BukkitRunnable {
-    Main plugin; UUID id;
-    static HashMap<UUID, Boolean> isCooldown = new HashMap<>();
+    Main plugin; UUID id; ThirstDamageTask task;
+
+    private static final HashMap<UUID, Boolean> isRunning = new HashMap<>();
     public ThirstDamageTask(Main plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
-        if(isCooldown.containsKey(id)) setIsCooldown(id, false);
+        if(!isRunning.containsKey(id)) setIsRunning(id, false);
     }
-    public void setIsCooldown(UUID id, boolean value) {
-        isCooldown.put(id, value);
+    public boolean isRunning(UUID id){
+        if(!isRunning.containsKey(id)) setIsRunning(id, false);
+        return isRunning.get(id);
     }
-    public boolean isCooldown(UUID id){
-        if (isCooldown.get(id) != null) return isCooldown.get(id);
-        else return false;
+    public void setIsRunning(UUID id, boolean value){
+        isRunning.put(id, value);
     }
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-        if (player != null  && Thirst.getThirst(id) == 0) player.damage(2d);
-        setIsCooldown(id, false);
+        if(player != null) player.damage(2d);
+        task = new ThirstDamageTask(plugin, id);
+        if(Thirst.getThirst(id) <= 0) {
+            task.runTaskLater(plugin, 60L);
+            setIsRunning(id, true);
+        }else setIsRunning(id, false);
     }
 }
