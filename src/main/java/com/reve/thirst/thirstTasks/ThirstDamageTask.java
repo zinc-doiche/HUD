@@ -25,11 +25,7 @@ public class ThirstDamageTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-        if(player != null) player.damage(2d);
-        task = new ThirstDamageTask(plugin, id);
-        if(Thirst.getThirst(id) <= 0) {
-            task.runTaskLater(plugin, 60L);
-            setIsRunning(id, true);
-        }else setIsRunning(id, false);
+        if(player != null && isRunning(id)) player.damage(2d);
+        setIsRunning(id, false);
     }
 }
