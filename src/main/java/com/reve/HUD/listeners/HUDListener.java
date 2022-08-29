@@ -9,6 +9,7 @@ import com.reve.HUD.tasks.JumpTask;
 import com.reve.HUD.tasks.RunTask;
 import com.reve.HUD.tasks.temperatureTasks.TemperatureTask;
 import com.reve.HUD.tasks.thirstTasks.*;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,8 +39,8 @@ public class HUDListener implements Listener{
         new ThirstTask(plugin, id).runTaskTimer(plugin, 5L, 5L);
 
         new TemperatureTask(plugin, id).runTaskTimer(plugin, 10L, 10L);
-
-        new DisplayTask(plugin, id).runTaskTimer(plugin, 0L, 1L);
+        if (player.getGameMode().equals(GameMode.SURVIVAL) || player.getGameMode().equals(GameMode.ADVENTURE))
+            new DisplayTask(plugin, id).runTaskTimer(plugin, 0L, 1L);
     }
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){

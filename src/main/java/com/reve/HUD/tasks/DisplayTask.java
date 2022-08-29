@@ -5,6 +5,8 @@ import com.reve.HUD.huds.stamina.Stamina;
 import com.reve.HUD.huds.thirst.Thirst;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -17,16 +19,18 @@ public class DisplayTask extends BukkitRunnable {
         this.plugin = plugin;
         this.id = id;
     }
+    private boolean isTotallyInWater(Player player){
+        player.sendMessage(player.getLocation().toString());
+        Block block = player.getWorld().getBlockAt(player.getLocation());
+        return (block.getType().equals(Material.WATER));
+    }
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-
-        String unicode = "";
-        String bar = "";
-
+        String unicode; String bar;
 
         int t = (int) Math.ceil(Thirst.getThirst(player.getUniqueId()));
-        if (player.isInWater()) {
+        if (isTotallyInWater(player)) {
             if (t == 0) {
                 unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005";
             } else if (t == 1) {

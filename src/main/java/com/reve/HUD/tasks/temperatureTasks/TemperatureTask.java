@@ -40,7 +40,7 @@ public class TemperatureTask extends BukkitRunnable {
                 timer.remove(id);
 
             }
-            player.sendMessage(temperature.toString());
+            //player.sendMessage(temperature.toString());
             //플레이어가 온도가 체온과 3 이상 다른 곳에서 1분 이상 있으면, 체온 변화 시작.
             //체온은 |현재 체온 - 기온| 의 속도로 변화함.
             //체온 레벨 0/20에서 데미지 입기 시작. x초에 y데미지 받음.
