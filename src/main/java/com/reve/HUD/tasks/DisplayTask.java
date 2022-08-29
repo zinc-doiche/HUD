@@ -5,6 +5,7 @@ import com.reve.HUD.huds.stamina.Stamina;
 import com.reve.HUD.huds.thirst.Thirst;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -20,8 +21,12 @@ public class DisplayTask extends BukkitRunnable {
         this.id = id;
     }
     private boolean isTotallyInWater(Player player){
-        player.sendMessage(player.getLocation().toString());
-        Block block = player.getWorld().getBlockAt(player.getLocation());
+        //player.sendMessage(player.getLocation().toString());
+        Location location = player.getLocation().add(0f,1f,0f);
+
+        if (player.isSleeping()) location = player.getLocation();
+        //WIP: 눈거나 엎드릴 때 감지!
+        Block block = player.getWorld().getBlockAt(location);
         return (block.getType().equals(Material.WATER));
     }
     @Override

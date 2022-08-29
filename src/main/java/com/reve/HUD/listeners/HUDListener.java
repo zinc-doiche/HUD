@@ -39,7 +39,8 @@ public class HUDListener implements Listener{
         new ThirstTask(plugin, id).runTaskTimer(plugin, 5L, 5L);
 
         new TemperatureTask(plugin, id).runTaskTimer(plugin, 10L, 10L);
-        if (player.getGameMode().equals(GameMode.SURVIVAL) || player.getGameMode().equals(GameMode.ADVENTURE))
+        if (player != null && (player.getGameMode().equals(GameMode.SURVIVAL) ||
+                player.getGameMode().equals(GameMode.ADVENTURE)))
             new DisplayTask(plugin, id).runTaskTimer(plugin, 0L, 1L);
     }
     @EventHandler
