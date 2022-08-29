@@ -2,15 +2,17 @@ package com.reve.HUD.tasks.temperatureTasks;
 
 import com.reve.HUD.HUDPlugin;
 import com.reve.HUD.huds.temperature.Temperature;
-import com.reve.HUD.tasks.DamageTask;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class TemperatureTask extends BukkitRunnable {
-    HUDPlugin plugin; UUID id; Double temperature = 0d;
-
+    private final HUDPlugin plugin;
+    private final UUID id;
+    private final HashMap<UUID, Long> timer = new HashMap<>();
+    private Double temperature = 10d;
     public TemperatureTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
@@ -18,25 +20,34 @@ public class TemperatureTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
+        PlayerTemperatureTask playerTempTask = new PlayerTemperatureTask(plugin, id);
         if (player != null) {
-            double x = player.getLocation().getX();
-            double y = player.getLocation().getY();
-            double z = player.getLocation().getZ();
-            temperature = plugin.getServer().getWorld(id).getTemperature((int)x,(int)y,(int)z);
-            player.sendMessage(temperature.toString());
-            DamageTask damageTask = new DamageTask(plugin, id, 3d);
-            double playerTemp = Temperature.getTemperature(id);
-            if (playerTemp > 0d && playerTemp < 20d) {
-                damageTask.setIsRunning(id, false);
-            } else {
-                if (playerTemp >= 20d) Temperature.setTemperature(id, 20d);
-                if (playerTemp <= 0d) Temperature.setTemperature(id, 0d);
-                if(!damageTask.isRunning(id)) {
-                    damageTask.setIsRunning(id, true);
-                    damageTask.runTaskLater(plugin, 60L);
+            temperature = player.getWorld().getTemperature(
+                    (int)player.getLocation().getX(),
+                    (int)player.getLocation().getY(),
+                    (int)player.getLocation().getZ()) + 1;
+            temperature = (temperature*20)/3;
+            //map from -1~2 to 0~20.
+            double deltaTemp = Math.abs(temperature - Temperature.getTemperature(id));
+            if (deltaTemp >= 3d){
+                if (!timer.containsKey(id)) timer.put(id, System.currentTimeMillis());
+                if (System.currentTimeMillis() - timer.get(id) >= 60000L) {
+                    playerTempTask.setIsRunning(true);
+                    playerTempTask.runTaskLater(plugin, 60L);
                 }
-            }
+            }else{
+                playerTempTask.setIsRunning(false);
+                timer.remove(id);
 
+            }
+            player.sendMessage(temperature.toString());
+            //플레이어가 온도가 체온과 3 이상 다른 곳에서 1분 이상 있으면, 체온 변화 시작.
+            //체온은 |현재 체온 - 기온| 의 속도로 변화함.
+            //체온 레벨 0/20에서 데미지 입기 시작. x초에 y데미지 받음.
+            //+용암, 물, 가루눈, 지옥
         }
+    }
+    public double getTemperature(){
+        return temperature;
     }
 }

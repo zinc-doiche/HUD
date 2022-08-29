@@ -10,7 +10,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class ThirstTask extends BukkitRunnable {
-    HUDPlugin plugin; UUID id;
+    private final HUDPlugin plugin;
+    private final UUID id;
     public ThirstTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;
@@ -27,7 +28,7 @@ public class ThirstTask extends BukkitRunnable {
             //player.sendMessage("Run: " + run.isRunning(id));
             //player.sendMessage("Jump: " + jump.isJumping(id));
             if (Thirst.getThirst(id) > 0) {
-                damageTask.setIsRunning(id, false);
+                damageTask.setIsRunning(false);
                 if (run.isRunning(id)) {
                     amp += 0.5f;
                 }
@@ -37,8 +38,8 @@ public class ThirstTask extends BukkitRunnable {
                 Thirst.setThirst(id, Thirst.getThirst(id) - 0.025f * amp);
             } else {
                 Thirst.setThirst(id, 0);
-                if(!damageTask.isRunning(id)) {
-                    damageTask.setIsRunning(id, true);
+                if(!damageTask.isRunning()) {
+                    damageTask.setIsRunning(true);
                     damageTask.runTaskLater(plugin, 60L);
                 }
             }

@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class JumpTask extends BukkitRunnable {
-    HUDPlugin plugin; UUID id;
+    private final HUDPlugin plugin;
+    private final UUID id;
     private static final HashMap<UUID, Boolean> isjumping = new HashMap<>();
     public JumpTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;

@@ -10,7 +10,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class DisplayTask extends BukkitRunnable {
-    HUDPlugin plugin; UUID id;
+    private final HUDPlugin plugin;
+    private final UUID id;
     public DisplayTask (HUDPlugin plugin, UUID id){
         this.plugin = plugin;
         this.id = id;

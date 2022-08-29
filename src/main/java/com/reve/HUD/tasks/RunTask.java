@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class RunTask extends BukkitRunnable {
-    HUDPlugin plugin; UUID id;
+    private final HUDPlugin plugin;
+    private final UUID id;
     private static final HashMap<UUID, Boolean> isrunning = new HashMap<>();
     public RunTask(HUDPlugin plugin, UUID id){
         this.plugin = plugin;
