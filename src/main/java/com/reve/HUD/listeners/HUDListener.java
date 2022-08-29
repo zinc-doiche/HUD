@@ -34,8 +34,8 @@ public class HUDListener implements Listener{
         UUID id = player.getUniqueId();
 
         new ThirstConfig(plugin, player).setThirstConfig();
-        //player.sendMessage("Thirst: "+Thirst.getThirst(id));
 
+        //player.sendMessage("Thirst: "+Thirst.getThirst(id));
         new ThirstTask(plugin, id).runTaskTimer(plugin, 5L, 5L);
 
         new TemperatureTask(plugin, id).runTaskTimer(plugin, 10L, 10L);

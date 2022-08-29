@@ -32,102 +32,58 @@ public class DisplayTask extends BukkitRunnable {
     @Override
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
-        String unicode; String bar;
+
+
+
 
         int t = (int) Math.ceil(Thirst.getThirst(player.getUniqueId()));
-        if (isTotallyInWater(player)) {
-            if (t == 0) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005";
-            } else if (t == 1) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004";
-            } else if (t == 2) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003";
-            } else if (t == 3) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003";
-            } else if (t == 4) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003";
-            } else if (t == 5) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003";
-            } else if (t == 6) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 7) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 8) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 9) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 10) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 11) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 12) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 13) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 14) {
-                unicode = "\uE005\uF802\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 15) {
-                unicode = "\uE005\uF802\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 16) {
-                unicode = "\uE005\uF802\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 17) {
-                unicode = "\uE005\uF802\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 18) {
-                unicode = "\uE005\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else if (t == 19) {
-                unicode = "\uE004\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            } else {
-                //t>=20;
-                unicode = "\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003\uF802\uE003";
-            }
-        } else {
-            if (t == 0) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002";
-            } else if (t == 1) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001";
-            } else if (t == 2) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000";
-            } else if (t == 3) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000";
-            } else if (t == 4) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000";
-            } else if (t == 5) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000";
-            } else if (t == 6) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 7) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 8) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 9) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 10) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 11) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 12) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 13) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 14) {
-                unicode = "\uE002\uF802\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 15) {
-                unicode = "\uE002\uF802\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 16) {
-                unicode = "\uE002\uF802\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 17) {
-                unicode = "\uE002\uF802\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 18) {
-                unicode = "\uE002\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else if (t == 19) {
-                unicode = "\uE001\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            } else {
-                //t>=20;
-                unicode = "\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000\uF802\uE000";
-            }
-        }// thirst 출력 코드
+        String display1="";
 
+        String a ="\uE000\uF802"; //풀
+        String b ="\uE001\uF802"; //반 + 띄어쓰기
+        String c ="\uE002\uF802"; //없
+
+        if (isTotallyInWater(player)) {
+            a="\uE003\uF802"; //풀 물
+            b="\uE004\uF802"; //반 물 + 띄어쓰기
+            c="\uE005\uF802"; //없 물
+        }
+
+        if (t%2==0) {
+            int k = t/2;
+            int x = 10-k;
+
+            if(x != 0){
+                for(int i = x; i>0; i--){
+                    display1 += c;
+                }
+            }
+            for(int i=k; i>0; i--){
+                display1 += a;
+            }
+
+        } else {
+            int k = (int) (t/2);
+            int x = 9-k;
+
+            for(int i = x; i>0; i--){
+                display1 += c;
+            }
+            display1 += b;
+            for(int i = k; i>0; i--){
+                display1 += a;
+            }
+        }
+        String thirst = display1.substring(0,display1.length()-1);
+        // thirst 출력 코드
+
+
+
+
+
+        String bar;
         int k = (int) Math.ceil(Stamina.getStamina(player.getUniqueId()));
+
         if (k == 0) {
             bar = "\uEA28";
         } else if (k == 1) {
@@ -165,9 +121,12 @@ public class DisplayTask extends BukkitRunnable {
         } else if (k == 17) {
             bar = "\uEA11";
         } else {
-            //k>=18;
             bar = "\uEA10";
         }
+        String staminaBar = bar;
+        // bar 출력 코드, case 통한 간결화 필요
+
+
 
 
         String tab1 = "\uF801";
@@ -176,7 +135,7 @@ public class DisplayTask extends BukkitRunnable {
         String tab2 = "\uF80B" + "\uF809" + "\uF803";
         // -66-18-5
 
-        String display = tab1 + bar + tab2 + unicode;
+        String display = tab1 + staminaBar + tab2 + thirst;
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(display));
     }
 }
