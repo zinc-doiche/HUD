@@ -39,7 +39,6 @@ public class ThirstTask extends BukkitRunnable {
             } else {
                 Thirst.setThirst(id, 0);
                 if(!damageTask.isRunning()) {
-                    player.sendMessage("hi");
                     damageTask.setIsRunning(true);
                     damageTask.runTaskLater(plugin, 60L);
                 }

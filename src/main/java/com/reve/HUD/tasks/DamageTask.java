@@ -28,7 +28,6 @@ public class DamageTask extends BukkitRunnable {
     public void run() {
         Player player = plugin.getServer().getPlayer(id);
         if(player != null && isRunning()) player.damage(damage);
-        player.sendMessage("DT runned.");
         setIsRunning(false);
     }
 }
