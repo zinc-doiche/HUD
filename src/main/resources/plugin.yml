@@ -4,3 +4,6 @@ main: com.reve.HUD.HUDPlugin
 api-version: 1.19
 authors: [ doiche, crazywindow7 ]
 description: HUD system
+commands:
+  gethud:
+    description: get HUD levels.
